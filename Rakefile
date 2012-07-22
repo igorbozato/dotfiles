@@ -1,5 +1,7 @@
 require 'rake'
 
+VIMFILES_URL = "git://github.com/akitaonrails/vimfiles.git"
+
 desc "Install dotfiles in user's home directory"
 task :install do
   files = Dir["*"] - %w[README Rakefile]
@@ -7,6 +9,8 @@ task :install do
   files.each do |file|
     install_file(file)
   end
+
+  install_vimfiles
 end
 
 def install_file(file)
@@ -17,4 +21,10 @@ def install_file(file)
     puts "linking ~/.#{file}"
     system %Q{ln -f -s "$PWD/#{file}" "$HOME/.#{file}"}
   end
+end
+
+def install_vimfiles
+  puts "installing vimfiles"
+  system "git clone #{VIMFILES_URL} $HOME/.vim"
+  system "cd $HOME/.vim/; git submodule update --init"
 end
