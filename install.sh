@@ -34,6 +34,8 @@ for name in *; do
   fi
 done
 
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+
 #git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 #vim -u ~/.vimrc.bundles +BundleInstall +qa
 
