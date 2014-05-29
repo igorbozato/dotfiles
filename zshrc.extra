@@ -2,5 +2,8 @@ alias tmux="tmux -2"
 
 export TERM="xterm-256color"
 
+export EDITOR=vim
+
 export GOPATH=$HOME/code/go
+
 export PATH=$PATH:$GOPATH/bin

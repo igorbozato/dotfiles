@@ -13,6 +13,7 @@ Bundle "gmarik/vundle"
 Bundle "tpope/vim-rails.git"
 Bundle "tpope/vim-rake.git"
 Bundle "vim-ruby/vim-ruby.git"
+Bundle 'thoughtbot/vim-rspec'
 
 " Other languages
 Bundle "pangloss/vim-javascript"
@@ -69,7 +70,7 @@ Bundle "vim-scripts/AnsiEsc.vim.git"
 Bundle "vim-scripts/AutoTag.git"
 Bundle "vim-scripts/lastpos.vim"
 Bundle "vim-scripts/sudo.vim"
-Bundle "xsunsmile/showmarks.git"
+Bundle "benmills/vimux"
 
 " Text objects
 Bundle "austintaylor/vim-indentobject"
@@ -101,6 +102,8 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
+set incsearch                   "Find the next match as we type the search
+set hlsearch                    "Hilight searches by default
 set gcr=a:blinkon0              "Disable cursor blink
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
@@ -178,10 +181,6 @@ set term=screen-256color
 let g:rehash256 = 1
 color molokai
 
-"make <c-l> clear the highlight as well as redraw
-nnoremap <C-L> :nohls<CR><C-L>
-inoremap <C-L> <C-O>:nohls<CR>
-
 "key mapping for window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -191,3 +190,12 @@ map <C-l> <C-w>l
 "key mapping for tab navigation
 nmap <Tab> gt
 nmap <S-Tab> gT
+
+"NERDTree
+silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
